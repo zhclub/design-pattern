@@ -1,7 +1,5 @@
 package com.alibet.creational.singleton;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,10 +8,10 @@ public class ContainerSingleton {
     private ContainerSingleton() {
     }
 
-    private static Map<String, Object> singletonMap = new HashMap<>();
+    private static final Map<String, Object> singletonMap = new HashMap<>();
 
     public static void addInstance(String key, Object instance) {
-        if (StringUtils.isNotBlank(key) && instance != null) {
+        if (key != null && !key.isEmpty() && instance != null) {
             if (!singletonMap.containsKey(key)) {
                 singletonMap.put(key, instance);
             }
@@ -23,6 +21,5 @@ public class ContainerSingleton {
     public static Object getInstance(String key) {
         return singletonMap.get(key);
     }
-
 
 }
